@@ -1,33 +1,72 @@
-// Karma configuration file, see link for more information
-// https://karma-runner.github.io/1.0/config/configuration-file.html
+// Karma configuration
+var testWebpackConfig = require('./webpack.test.js');
+var path = require('path');
 
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: ['jasmine', '@angular/cli'],
+    frameworks: ['jasmine'],
+
     plugins: [
-      require('karma-jasmine'),
-      require('karma-chrome-launcher'),
-      require('karma-jasmine-html-reporter'),
-      require('karma-coverage-istanbul-reporter'),
-      require('@angular/cli/plugins/karma')
+      'karma-jasmine',
+      'karma-phantomjs-launcher',
+      'karma-jasmine-html-reporter',
+      'karma-webpack',
+      'karma-sourcemap-loader',
+      'karma-html-reporter',
+      'karma-coverage'
     ],
-    client:{
-      clearContext: false // leave Jasmine Spec Runner output visible in browser
+
+    files: [
+      { pattern: './src/test.ts', watched: false }
+    ],
+
+    exclude: [],
+
+    preprocessors: {
+      './src/test.ts': ['webpack', 'sourcemap', 'coverage']
     },
-    coverageIstanbulReporter: {
-      reports: [ 'html', 'lcovonly' ],
-      fixWebpackSourcePaths: true
+
+    reporters: ['progress', 'html', 'coverage'],
+
+    htmlReporter: {
+      outputDir: 'karma_html', // where to put the reports 
+      templatePath: null, // set if you moved jasmine_template.html
+      focusOnFailures: true, // reports show failures on start
+      namedFiles: false, // name files instead of creating sub-directories
+      pageTitle: null, // page title for reports; browser info by default
+      urlFriendlyName: false, // simply replaces spaces with _ for files/dirs
+      reportName: 'report-summary-filename', // report summary filename; browser info by default
+      preserveDescribeNesting: false, // folded suites stay folded 
+      foldAll: false,
     },
-    angularCli: {
-      environment: 'dev'
+
+    coverageReporter: {
+      type: 'html',
+      dir: 'coverage/'
     },
-    reporters: ['progress', 'kjhtml'],
+
+
     port: 9876,
+
     colors: true,
+
     logLevel: config.LOG_INFO,
+
     autoWatch: true,
-    browsers: ['Chrome'],
-    singleRun: false
-  });
-};
+
+    browsers: ['PhantomJS'],
+
+
+    singleRun: false,
+
+
+    concurrency: Infinity,
+
+    webpack: {
+      module: testWebpackConfig.module,
+      resolve: testWebpackConfig.resolve,
+      plugins: testWebpackConfig.plugin
+    }
+  })
+}

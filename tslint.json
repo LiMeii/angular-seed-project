@@ -107,6 +107,7 @@
         "variable-declaration": "nospace"
       }
     ],
+    "typeof-compare": true,
     "unified-signatures": true,
     "variable-name": false,
     "whitespace": [
@@ -120,13 +121,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      "sp",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      "sp",
       "kebab-case"
     ],
     "no-output-on-prefix": true,
