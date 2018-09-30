@@ -1,80 +1,93 @@
-
+const path = require('path');
+const rxPaths = require('rxjs/_esm5/path-mapping');
+var helpers = require('./helpers');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-  entry: {
-    'app': './src/main.ts',
-    'polyfills': './src/polyfills.ts'
-  },
-  devtool: 'cheap-module-eval-source-map',
   performance: {
     hints: false
   },
-  resolve: {
-    extensions: ['.ts', '.js', '.json', '.css']
+  entry: {
+    polyfills: './src/polyfills.ts',
+    vendor: './src/vendor.ts',
+    app: './src/main.ts'
   },
   output: {
-    path: path.join(__dirname, './build-prod'),
-    filename: 'js/[name].bundle.js'
+    path: path.join(process.cwd(), 'dist'),
+    publicPath: "/dist/",
+    filename: 'js/[name].[chunkhash].bundle.js',
+    chunkFilename: 'js/[id].[chunkhash].chunk.js'
+  },
+  resolve: {
+    extensions: ['.ts', '.js', '.json', '.css', '.scss'],
+    alias: rxPaths()
+  },
+
+  devServer: {
+    historyApiFallback: true,
   },
 
   module: {
+
     rules: [
       {
         test: /\.ts$/,
-        use: [
+        loaders: [
           'awesome-typescript-loader',
           'angular-router-loader',
-          'angular2-template-loader',
-          'source-map-loader'
-          //'tslint-loader'
+          'angular2-template-loader'
         ]
+      },
+      {
+        test: /\.(pdf|png|woff|woff2|eot|ttf|svg|jpg)$/,
+        include: path.resolve(__dirname, "src/assets"),
+        use: 'file-loader?name=content/Images/[name].[ext]'
       },
       {
         test: /\.html$/,
         use: 'html-loader'
       },
       {
-        test: /\.(png|jpg|gif|ico|woff|woff2|ttf|eot)$/,
-        include: path.resolve(__dirname, "src/assets"),
-        use: 'file-loader?name=assets/images/[name].[ext]'
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       }
-    ]
+    ],
+    exprContextCritical: false
   },
   plugins: [
-    new CleanWebpackPlugin(['build-prod']),
-    new webpack.NormalModuleReplacementPlugin(/\.\/environment\.dev/, './environment.prod'),
+    new CleanWebpackPlugin(['./dist'], { root: path.join(process.cwd(), '') }),
+    function () {
+      this.plugin('watch-run',
+        function (watching, callback) {
+          console.log('\x1b[33m%s\x1b[0m', `Begin compile at ${(new Date()).toTimeString()}`);
+          callback();
+        });
+    },
     new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: ['common', 'app', 'polyfills'],
-      minChunks: 2
-    }),
-    new webpack.ContextReplacementPlugin(
-      /\@angular(\\|\/)core(\\|\/)esm5/,
-      path.resolve(__dirname, '../src')
-    ),
-    // inject in index.html
+
+    new webpack.optimize.OccurrenceOrderPlugin(),
+
+    new webpack.optimize.CommonsChunkPlugin({ name: ['vendor', 'polyfills'] }),
+
     new HtmlWebpackPlugin({
       template: './src/index.html',
       inject: 'body',
       filename: 'index.html'
     }),
-    new CopyWebpackPlugin(
-      [{ from: './src/assets', to: path.join(process.cwd(), 'build-prod/assets')}],
-      { copyUnmodified: true }
-    ),
-    new webpack.ProvidePlugin({
-      jQuery: 'jquery',
-      $: 'jquery',
-      jquery: 'jquery'
+    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.NormalModuleReplacementPlugin(/\.\/environment\.dev/, './environment.prod', helpers.root('src', 'environment'), {}),
+    new UglifyJSPlugin({
+      sourceMap: true
     }),
-  ],
-  devServer: {
-    historyApiFallback: true,
-    stats: 'minimal'
-  }
+    new webpack.LoaderOptionsPlugin({
+      htmlLoader: {
+        minimize: false
+      }
+    }),
+  ]
+
 };
+

@@ -5,8 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --env=dev --hot --inline --port 3000 --open\"",
     "build:dev": "webpack --env=dev --progress --profile --colors",
-    "build:prod": "webpack --env=prod --progress --profile --colors",
-    "test": "karma start ./karma.conf.js"
+    "build:prod": "webpack --env=prod --progress --profile --colors"
   },
   "private": true,
   "dependencies": {
@@ -52,12 +51,13 @@
     "karma-webpack": "^3.0.0",
     "raw-loader": "^0.5.1",
     "source-map-loader": "^0.2.0",
+    "style-loader": "^0.23.0",
     "svg-url-loader": "^2.3.2",
     "to-string-loader": "^1.1.5",
     "tslint": "^5.9.1",
     "tslint-loader": "^3.6.0",
     "typescript": "~2.4.2",
-    "uglifyjs-webpack-plugin": "^1.1.5",
+    "uglifyjs-webpack-plugin": "^1.3.0",
     "webpack": "~3.10.0",
     "webpack-dev-server": "~2.9.3"
   }

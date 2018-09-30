@@ -19,9 +19,9 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, './build-dev'),
-    filename: 'js/[name].bundle.js'
+    filename: 'js/[name].bundle.js',
+    chunkFilename: 'js/[id].chunk.js'
   },
-
   module: {
     rules: [
       {
@@ -31,7 +31,6 @@ module.exports = {
           'angular-router-loader',
           'angular2-template-loader',
           'source-map-loader'
-          //'tslint-loader'
         ]
       },
       {
@@ -42,7 +41,12 @@ module.exports = {
         test: /\.(png|jpg|gif|ico|woff|woff2|ttf|eot)$/,
         include: path.resolve(__dirname, "src/assets"),
         use: 'file-loader?name=assets/images/[name].[ext]'
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       }
+
     ]
   },
   plugins: [
