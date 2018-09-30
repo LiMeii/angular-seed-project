@@ -2,7 +2,7 @@
 
 This project buil based on Angular5.0 and Webpack3.10.0
 
-It's mainly used for my learing and pratice
+It's mainly used for my learning and practice
 
 # usage
 
