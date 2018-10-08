@@ -5,7 +5,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry: {
-        'a': './src/app/bundle/a.js'
+        'a': './src/app/bundle/a.js',
+        'c': './src/app/bundle/c.js'
     },
     performance: {
         hints: false
@@ -20,10 +21,8 @@ module.exports = {
 
     plugins: [
         new CleanWebpackPlugin(['./build-bundle'], { root: path.join(process.cwd(), '') }),
-        new webpack.ContextReplacementPlugin(
-            /\@angular(\\|\/)core(\\|\/)esm5/,
-            path.resolve(__dirname, '../src')
-        )
+        //new webpack.optimize.CommonsChunkPlugin({ name: 'commons' }),
+        new webpack.optimize.CommonsChunkPlugin({ name: 'c' }),
     ],
     devServer: {
         historyApiFallback: true,
