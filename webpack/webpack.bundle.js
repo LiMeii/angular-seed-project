@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry: {
-        'a': './src/app/bundle/a.js',
+        'a': './src/app/bundle/a.js'
     },
     performance: {
         hints: false
