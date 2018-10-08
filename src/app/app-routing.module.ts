@@ -11,7 +11,7 @@ const routes: Routes = [
         data: { preload: true }
     },
     { path: 'settings', loadChildren: './modules/settings/settings.module#SettingsModule' },
-    { path: 'reports', loadChildren: './modules/reports/reports.module#SettingsModule' },
+    { path: 'reports', loadChildren: './modules/reports/reports.module#ReportsModule' },
 
 ];
 

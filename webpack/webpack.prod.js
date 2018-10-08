@@ -1,3 +1,4 @@
+// this webpack config file is for production environment.
 const path = require('path');
 const rxPaths = require('rxjs/_esm5/path-mapping');
 var helpers = require('./helpers');
