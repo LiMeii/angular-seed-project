@@ -4,13 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppCustomPreloader } from './app.custom.preloader';
 
 const routes: Routes = [
+    { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
     {
         path: 'dashboard',
         loadChildren: './modules/dashboard/dashboard.module#DashboardModule',
         data: { preload: true }
     },
     { path: 'settings', loadChildren: './modules/settings/settings.module#SettingsModule' },
-    { path: 'reports', loadChildren: './modules/reports/reports.module#ReportsModule' },
+    { path: 'reports', loadChildren: './modules/reports/reports.module#SettingsModule' },
 
 ];
 

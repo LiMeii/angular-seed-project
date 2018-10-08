@@ -12,3 +12,5 @@ import "@angular/forms";
 import "rxjs/Rx";
 
 
+import "./assets/styles.css";
+

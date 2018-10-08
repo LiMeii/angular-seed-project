@@ -4,19 +4,11 @@
     Welcome to {{ title }}!
   </h1>
 </div>
-<ul>
-  <li>
-    <h2><a routerLink="/dashboard">Dashboard</a></h2>
-  </li>
-  <li>
-    <h2><a routerLink="/settings">Settings</a></h2>
-  </li>
-  <li>
-    <h2><a routerLink="/reports">Reports</a></h2>
-  </li>
-</ul>
-
+<div>
+  <a class="title" routerLink="/dashboard">Dashboard</a>
+  <a class="title" routerLink="/settings">Settings</a>
+  <a class="title" routerLink="/reports">Reports</a>
+</div>
 <div class="viewHeight">
   <router-outlet></router-outlet>
 </div>
-

@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   entry: {
@@ -57,6 +58,7 @@ module.exports = {
       /\@angular(\\|\/)core(\\|\/)esm5/,
       path.resolve(__dirname, '../src')
     ),
+    new BundleAnalyzerPlugin(),
     // inject in index.html
     new HtmlWebpackPlugin({
       template: './src/index.html',
