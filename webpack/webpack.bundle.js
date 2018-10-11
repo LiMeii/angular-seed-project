@@ -2,11 +2,16 @@
 const webpack = require('webpack');
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
+    //entry: {
+    //     'a': './src/app/bundle/a.js',
+    //     'c': './src/app/bundle/c.js'
+    // },
     entry: {
-        'a': './src/app/bundle/a.js',
-        'c': './src/app/bundle/c.js'
+        'extract-a': './src/app/bundle/css-extract-a.js',
+        'extract-b': './src/app/bundle/css-extract-b.js'
     },
     performance: {
         hints: false
@@ -16,13 +21,25 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, '../build-bundle'),
-        filename: 'js/[name].bundle.js'
+        filename: ' [name].[chunkhash].bundle.js'
     },
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader?minimize']
+                })
+            }
 
+        ]
+    },
     plugins: [
         new CleanWebpackPlugin(['./build-bundle'], { root: path.join(process.cwd(), '') }),
+        new ExtractTextPlugin('[name]-[contenthash]].css')
         //new webpack.optimize.CommonsChunkPlugin({ name: 'commons' }),
-        new webpack.optimize.CommonsChunkPlugin({ name: 'c' }),
+        // new webpack.optimize.CommonsChunkPlugin({ name: 'c' }),
     ],
     devServer: {
         historyApiFallback: true,
