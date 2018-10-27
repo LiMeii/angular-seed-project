@@ -10,6 +10,7 @@ const settingsRoutes: Routes = [
 
 @NgModule({
     imports: [RouterModule.forChild(settingsRoutes)],
+    declarations: [SettingsComponent],
     exports: [RouterModule]
 })
 

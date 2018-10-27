@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { LocalStorageModule, LocalStorageService } from 'angular-2-local-storage';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthGuardModule } from './core/guards/auth-guard.module';
 
 
 
@@ -12,9 +14,15 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    LocalStorageModule,
+    AuthGuardModule,
+    LocalStorageModule.withConfig({
+      prefix: '',
+      storageType: 'localStorage'
+    })
   ],
-  providers: [],
+  providers: [LocalStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

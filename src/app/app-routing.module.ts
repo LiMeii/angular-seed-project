@@ -2,16 +2,35 @@ import { NgModule } from '@angular/core';
 //import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { RouterModule, Routes } from '@angular/router';
 import { AppCustomPreloader } from './app.custom.preloader';
+import { LoginGuard } from './core/guards/login-guard';
 
 const routes: Routes = [
-    { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+    {
+        path: '',
+        loadChildren: './modules/authentication/authentication.module#AuthenticationModule',
+        data: { preload: true }
+    },
     {
         path: 'dashboard',
         loadChildren: './modules/dashboard/dashboard.module#DashboardModule',
-        data: { preload: true }
+        data: { preload: true },
+        canActivate: [LoginGuard]
     },
-    { path: 'settings', loadChildren: './modules/settings/settings.module#SettingsModule' },
-    { path: 'reports', loadChildren: './modules/reports/reports.module#ReportsModule' },
+    {
+        path: 'settings',
+        loadChildren: './modules/settings/settings.module#SettingsModule',
+        canActivate: [LoginGuard]
+    },
+    {
+        path: 'reports',
+        loadChildren: './modules/reports/reports.module#ReportsModule',
+        canActivate: [LoginGuard]
+    },
+    {
+        path: 'profile',
+        loadChildren: './modules/profile/profile.Module#ProfileModule',
+        canActivate: [LoginGuard]
+    }
 
 ];
 

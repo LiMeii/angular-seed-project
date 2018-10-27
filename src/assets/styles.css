@@ -9,3 +9,30 @@
 .content {
     font-size:1.3em;
 }
+
+.btn {
+    font-weight: 600;
+    height: 48px;
+    padding: 12px 20px;
+    font-size: 0.8125em;
+    line-height: 1.5;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: center;
+    border-radius: 9999em;
+    -webkit-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+    background-color: #4fc143;
+    color: #fff;
+    border: 2px solid transparent;
+    margin-right: 30px;
+}
+
+.flex{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:600px;
+  }

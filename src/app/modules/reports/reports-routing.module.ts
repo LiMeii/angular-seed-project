@@ -10,6 +10,7 @@ const ReportsRoutes: Routes = [
 
 @NgModule({
     imports: [RouterModule.forChild(ReportsRoutes)],
+    declarations: [ReportsComponent],
     exports: [RouterModule]
 })
 

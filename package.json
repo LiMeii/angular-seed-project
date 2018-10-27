@@ -28,6 +28,7 @@
     "@types/node": "~6.0.60",
     "ajv": "^6.0.0",
     "ajv-keywords": "^3.2.0",
+    "angular-2-local-storage": "^2.0.0",
     "angular-router-loader": "^0.8.2",
     "angular2-template-loader": "^0.6.2",
     "awesome-typescript-loader": "^3.5.0",
