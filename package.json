@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --env=dev --hot --inline --port 3000 --open\"",
+    "start": "webpack-dev-server --env=dev",
     "build:dev": "webpack --env=dev --progress --profile --colors",
     "build:prod": "webpack --env=prod --progress --profile --colors",
     "build:bundle": "webpack --env=bundle --progress --profile --colors"

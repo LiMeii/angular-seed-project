@@ -1,12 +1,13 @@
 import { Injectable } from "@angular/core";
-import { Router, CanActivate, ActivatedRouteSnapshot } from '@angular/router';
+import { Router, CanActivate, ActivatedRouteSnapshot, CanLoad } from '@angular/router';
 import { LocalStorageService } from "angular-2-local-storage/dist";
 
 import { userPermission, role, appStorage } from '../app-constants';
 
 @Injectable()
 
-export class UserGuard {
+export class UserGuard implements CanActivate, CanLoad {
+
     constructor(private router: Router, private localStorageService: LocalStorageService) { }
 
     canActivate(activatedRouteSnapshot: ActivatedRouteSnapshot): boolean {
@@ -31,4 +32,13 @@ export class UserGuard {
         return canRoute;
     }
 
+    canLoad(): boolean {
+        let isLogin = this.localStorageService.get(appStorage.isLogin);
+        let roleType = this.localStorageService.get(appStorage.loginType);
+        let canRoute = false;
+        if (isLogin && roleType === role.user) {
+            canRoute = true;
+        }
+        return canRoute;
+    }
 }

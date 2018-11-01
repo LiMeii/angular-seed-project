@@ -58,15 +58,19 @@ module.exports = {
       /\@angular(\\|\/)core(\\|\/)esm5/,
       path.resolve(__dirname, '../src')
     ),
-   // new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       inject: 'body',
       filename: 'index.html'
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
-    historyApiFallback: true,
-    stats: 'minimal'
+    stats: 'minimal',
+    contentBase: path.join(__dirname, './build-dev'),
+    hot: true,
+    port: 3200,
+    open: true
   }
 };

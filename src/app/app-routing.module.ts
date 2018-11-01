@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 //import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { RouterModule, Routes } from '@angular/router';
 import { AppCustomPreloader } from './app.custom.preloader';
-import { LoginGuard } from './core/guards/login-guard';
+import { UserGuard } from './core/guards/user-guards';
+import { AdminGuard } from './core/guards/admin-guard';
 
 const routes: Routes = [
     {
@@ -13,23 +14,22 @@ const routes: Routes = [
     {
         path: 'dashboard',
         loadChildren: './modules/dashboard/dashboard.module#DashboardModule',
-        data: { preload: true },
-        canActivate: [LoginGuard]
+        canLoad: [UserGuard]
     },
     {
         path: 'settings',
         loadChildren: './modules/settings/settings.module#SettingsModule',
-        canActivate: [LoginGuard]
+        canLoad: [AdminGuard]
     },
     {
         path: 'reports',
         loadChildren: './modules/reports/reports.module#ReportsModule',
-        canActivate: [LoginGuard]
+        canLoad: [AdminGuard]
     },
     {
         path: 'profile',
         loadChildren: './modules/profile/profile.Module#ProfileModule',
-        canActivate: [LoginGuard]
+        canLoad: [UserGuard]
     }
 
 ];

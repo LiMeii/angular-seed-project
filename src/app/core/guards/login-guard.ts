@@ -7,7 +7,9 @@ import { appStorage } from '../app-constants';
 @Injectable()
 
 export class LoginGuard implements CanActivate {
+
     constructor(private localStorageService: LocalStorageService, private router: Router) { }
+    
     canActivate(): boolean {
         let isLogin = this.localStorageService.get(appStorage.isLogin);
         if (isLogin) {
