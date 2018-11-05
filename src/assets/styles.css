@@ -8,6 +8,7 @@
 }
 .content {
     font-size:1.3em;
+    margin: 2em;
 }
 
 .btn {
@@ -35,4 +36,10 @@
     align-items:center;
     justify-content:center;
     height:600px;
+  }
+
+  a {
+    background: #dad4d4;
+    text-decoration: none;
+    margin: 1em;
   }
