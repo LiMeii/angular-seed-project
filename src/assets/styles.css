@@ -39,7 +39,16 @@
   }
 
   a {
-    background: #dad4d4;
-    text-decoration: none;
     margin: 1em;
+    font-size: 1.5em;
+    text-decoration: underline;
+  }
+
+  .header {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .header .item {
+      margin: 3em
   }

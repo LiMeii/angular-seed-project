@@ -1,15 +1,14 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
+<div class="header">
+  <div class="item">
+    <h1>
+      Welcome to {{ title }}!
+    </h1>
+  </div>
+  <div class="item" *ngIf="isLogin">
+    <a (click)="logOut()">logout</a>
+  </div>
 </div>
-<!-- <div>
-  <a class="title" routerLink="/dashboard">Dashboard</a>
-  <a class="title" routerLink="/settings">Settings</a>
-  <a class="title" routerLink="/reports">Reports</a>
-  <a class="title" routerLink="/profile">profile</a>
-</div> -->
 <div class="viewHeight">
   <router-outlet></router-outlet>
 </div>
