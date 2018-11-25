@@ -6,7 +6,8 @@
     "start": "webpack-dev-server --env=dev",
     "build:dev": "webpack --env=dev --progress --profile --colors",
     "build:prod": "webpack --env=prod --progress --profile --colors",
-    "build:bundle": "webpack --env=bundle --progress --profile --colors"
+    "build:bundle": "webpack --env=bundle --progress --profile --colors",
+    "test": "karma start ./karma.conf.js"
   },
   "private": true,
   "dependencies": {
@@ -43,8 +44,10 @@
     "html-webpack-plugin": "^2.29.0",
     "jasmine-core": "~2.6.2",
     "karma": "^1.7.1",
+    "karma-chrome-launcher": "^2.2.0",
     "karma-cli": "~1.0.1",
     "karma-coverage": "^1.1.1",
+    "karma-coverage-istanbul-reporter": "^2.0.4",
     "karma-html-reporter": "^0.2.7",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
