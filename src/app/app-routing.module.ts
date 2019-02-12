@@ -30,6 +30,11 @@ const routes: Routes = [
         path: 'profile',
         loadChildren: './modules/profile/profile.Module#ProfileModule',
         canLoad: [UserGuard]
+    },
+    {
+        path: 'dataSharing',
+        loadChildren: './modules/data-sharing/data-sharing.module#DataSharingModule'
+
     }
 
 ];
