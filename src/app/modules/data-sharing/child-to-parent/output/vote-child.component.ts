@@ -8,7 +8,7 @@ import { Component, Output, EventEmitter } from "@angular/core";
                 `
 })
 
-export class voteChildComponent {
+export class VoteChildComponent {
     @Output() vote = new EventEmitter<Boolean>();
 
     takeVote(agree: Boolean) {
