@@ -14,5 +14,4 @@ export class VoteChildComponent {
     takeVote(agree: Boolean) {
         this.vote.emit(agree);
     }
-
 }

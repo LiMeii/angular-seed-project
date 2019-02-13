@@ -5,7 +5,6 @@ import { Component } from "@angular/core";
     template: `
             <div style="margin-top:15px">reset count: {{resetCount}}</div>
     `
-
 })
 
 export class TimerChildComponent {
@@ -24,5 +23,4 @@ export class TimerChildComponent {
         this.seconds = 10;
         this.resetCount++
     }
-
 }

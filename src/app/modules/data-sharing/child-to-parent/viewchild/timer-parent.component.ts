@@ -1,7 +1,6 @@
 import { Component, ViewChild, AfterViewInit } from "@angular/core";
 
 import { TimerChildComponent } from './timer-child.component';
-import { timer } from "rxjs/observable/timer";
 
 @Component({
     template: `
@@ -14,7 +13,6 @@ import { timer } from "rxjs/observable/timer";
     <app-timer-child></app-timer-child>
     </div>
  `
-
 })
 
 export class TimerParentComponent implements AfterViewInit {
@@ -25,16 +23,13 @@ export class TimerParentComponent implements AfterViewInit {
     seconds() {
         return 0;
     }
-
     ngAfterViewInit() {
         setTimeout(() => this.seconds = () => this.timerChildComponent.seconds, 0);
     }
     start() {
         this.timerChildComponent.onStart();
-
     }
     reset() {
         this.timerChildComponent.onReset();
-
     }
 }

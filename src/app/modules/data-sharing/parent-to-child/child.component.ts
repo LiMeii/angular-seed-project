@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
 
-
 @Component({
     selector: 'app-child',
     template: `<ul>

@@ -10,7 +10,6 @@ export class ParentComponent implements OnInit {
     private colorLists: any;
     ngOnInit() {
         this.colorLists = ['red', 'black', 'green', 'bule', 'yellow'];
-
     }
 
 }
